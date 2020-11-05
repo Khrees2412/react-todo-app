@@ -5,6 +5,7 @@ const Todo = ({ todos, deleteTodo }) => {
 		if (item.length > 0) return true;
 		return false;
 	};
+	//	const date = String(new Date());
 
 	return (
 		<Fragment>
@@ -12,6 +13,7 @@ const Todo = ({ todos, deleteTodo }) => {
 				todos.map((todo, index) => (
 					<ul key={index}>
 						<li>
+							{/* <div>{date}</div> */}
 							<button className="delete-btn" type="submit" onClick={() => deleteTodo(index)}>
 								DELETE
 							</button>{" "}
