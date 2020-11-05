@@ -12,10 +12,10 @@ const Todo = ({ todos, deleteTodo }) => {
 				todos.map((todo, index) => (
 					<ul key={index}>
 						<li>
-							{todo.text}{" "}
 							<button className="delete-btn" type="submit" onClick={() => deleteTodo(index)}>
 								DELETE
-							</button>
+							</button>{" "}
+							{todo.text}
 						</li>
 
 						{/* <input type="checkbox" defaultChecked={todo.completed ? true : false} /> */}

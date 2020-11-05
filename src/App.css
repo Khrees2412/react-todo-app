@@ -4,7 +4,9 @@
 	box-sizing: border-box;
 }
 body {
-	background-image: linear-gradient(180deg, red, yellow);
+	background-color: #ccc;
+	font-family: "Roboto Slab", serif;
+	/* background-image: linear-gradient(180deg, yellow, orange); */
 }
 form {
 	margin-top: 10rem;
@@ -20,8 +22,15 @@ input {
 	width: 100%;
 	padding: 10px;
 	background-color: #f8f8ff;
-	border: 1px solid rgb(20, 17, 17);
+	border: none;
+	outline: none;
+	font-weight: 500;
+	font-size: 17px;
 }
+input:focus {
+	border: 1px solid lightseagreen;
+}
+
 .add-btn {
 	width: 100%;
 	padding: 10px;
@@ -34,7 +43,7 @@ input {
 }
 .delete-btn {
 	padding: 10px;
-	margin: 10px 0px;
+	margin: 10px;
 	background-color: black;
 	color: mediumvioletred;
 	border: none;
@@ -44,8 +53,9 @@ input {
 }
 li {
 	list-style-type: none;
-	border: 1px solid #ccc;
+	border: 1px solid #f8f8ff;
 	padding: 15px;
 	margin: 5px auto;
-	word-break: break-all;
+	/* word-break: break-all; */
+	word-wrap: break-word;
 }
