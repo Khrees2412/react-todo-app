@@ -1,12 +1,19 @@
+import * as firebase from "firebase/app";
+//import "firebase/storage"
+import "firebase/firestore";
+
 const firebaseConfig = {
-	apiKey: "AIzaSyDFW4TZHUhz6XzKGZje-Mpdce1OrsDGdJk",
-	authDomain: "khrees-quizapp.firebaseapp.com",
-	databaseURL: "https://khrees-quizapp.firebaseio.com",
-	projectId: "khrees-quizapp",
-	storageBucket: "khrees-quizapp.appspot.com",
-	messagingSenderId: "376171933275",
-	appId: "1:376171933275:web:de126e1e405dd2ce21997e",
-	measurementId: "G-XHH50CYL86"
+	apiKey: "AIzaSyAGhp6RrsGG_g8ll-92RN6F8tUtipxJ3Ao",
+	authDomain: "todoapp-f7ad0.firebaseapp.com",
+	databaseURL: "https://todoapp-f7ad0.firebaseio.com",
+	projectId: "todoapp-f7ad0",
+	storageBucket: "todoapp-f7ad0.appspot.com",
+	messagingSenderId: "721029476576",
+	appId: "1:721029476576:web:278ed1ddaa2e8f76142085"
 };
 
-export default firebaseConfig;
+firebase.initializeApp(firebaseConfig);
+
+const database = firebase.firestore();
+
+export default database;
