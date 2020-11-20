@@ -1,8 +1,9 @@
 import { database, createdAt } from "../firebaseConfig/config";
 
-export function addUserTodo(data) {
+export function addUserTodo(data, userID) {
 	if (!data) return;
 	database.add({
+		userId: userID,
 		text: data,
 		createdAt
 	});
@@ -24,18 +25,5 @@ export function updateData() {
 	database.docs("").update({});
 }
 export function deleteUserTodo(id) {
-	database.docs(id).delete();
-}
-
-export function snapGet() {
-	database.collection("").onSnapshot(snapshot => {
-		let changes = snapshot.docChanges();
-		changes.forEach(change => {
-			if (change.type === "added") {
-				console.log(change.doc.data());
-			} else if (change.type === "removed") {
-				console.log(change.doc());
-			}
-		});
-	});
+	database.doc(id).delete();
 }

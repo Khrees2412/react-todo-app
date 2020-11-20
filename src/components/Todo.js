@@ -2,7 +2,7 @@ import { Fragment, useState, useEffect } from "react";
 import Navbar from "./Navbar";
 import { database } from "../firebaseConfig/config";
 import { useAuth } from "../Context/authContext";
-import { addUserTodo, deleteUserTodo } from "../database/db";
+import { addUserTodo, deleteUserTodo } from "../database/controller";
 
 const Todo = () => {
 	const [value, setValue] = useState("");
@@ -12,7 +12,7 @@ const Todo = () => {
 	const userID = currentUser?.uid;
 
 	useEffect(() => {
-		const _unsubscribe = database.onSnapshot(snapshot => {
+		const _unsubscribe = database.where("userId", "==", userID).onSnapshot(snapshot => {
 			const data = snapshot.docs.map(doc => ({
 				id: doc.id,
 				...doc.data()
@@ -20,15 +20,8 @@ const Todo = () => {
 			setTodos(data);
 			console.log("todos:" + todos);
 		});
-
-		// if (change.type === "added") {
-		// 	console.log(change.doc.data());
-		// } else if (change.type === "removed") {
-		// 	console.log(change.doc());}
-		// 	});
-		//
 		return () => _unsubscribe;
-	}, []);
+	}, [userID, todos]);
 
 	const handleChange = event => {
 		setValue(event.target.value);
@@ -38,11 +31,6 @@ const Todo = () => {
 		setValue("");
 	};
 
-	const deleteTodo = id => {
-		const deleted = todos.splice(id, 1);
-		const newTodos = todos.filter(todo => todo !== deleted);
-		setTodos([...newTodos]);
-	};
 	const checkNotEmpty = item => {
 		if (item.length > 0) return true;
 		return false;
@@ -56,15 +44,17 @@ const Todo = () => {
 				<button className="add-btn" type="submit" onClick={() => addUserTodo(value, userID)}>
 					ADD
 				</button>
-
-				{todos ? (
+				{checkNotEmpty(todos) ? (
 					todos.map((todo, index) => (
 						<ul key={index}>
 							<li>
-								<button className="delete-btn" type="submit" onClick={() => deleteUserTodo(todos.id)}>
-									DELETE
+								<button className="delete-btn" type="submit" onClick={() => deleteUserTodo(todo.id)}>
+									Delete
 								</button>
-								{todo.text}
+								{todo.text}{" "}
+								<p style={{ color: "red", fontSize: "14px" }}>
+									{todo.createdAt?.toDate().toLocaleString()}
+								</p>
 							</li>
 
 							{/* <input type="checkbox" defaultChecked={todo.completed ? true : false} /> */}

@@ -9,6 +9,7 @@ const firebaseConfig = {
 	messagingSenderId: "721029476576",
 	appId: "1:721029476576:web:278ed1ddaa2e8f76142085"
 };
+/* Didn't work for some reason */
 
 // apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
 // 	authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
@@ -20,10 +21,9 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-const storage = firebase.storage();
 const database = firebase.firestore().collection("User Todos");
 const auth = firebase.auth();
 
 const createdAt = firebase.firestore.FieldValue.serverTimestamp();
 
-export { database, storage, auth, createdAt };
+export { database, auth, createdAt };
