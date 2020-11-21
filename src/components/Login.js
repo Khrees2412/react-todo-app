@@ -17,7 +17,7 @@ function Login() {
 
 	useEffect(() => {
 		if (currentUser) {
-			history.push("/");
+			history.push("/todo");
 		}
 	});
 
@@ -35,7 +35,7 @@ function Login() {
 			setError("");
 			setLoading(true);
 			await login(email, password);
-			history.push("/");
+			history.push("/todo");
 		} catch (err) {
 			//setError(err)
 			setError("An Error Occured. \n Try again");

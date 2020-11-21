@@ -20,7 +20,7 @@ export default function Signup() {
 
 	useEffect(() => {
 		if (currentUser) {
-			history.push("/");
+			history.push("/todo");
 		}
 	});
 
@@ -40,7 +40,7 @@ export default function Signup() {
 			setError("");
 			setLoading(true);
 			await signup(email, password);
-			history.push("/");
+			history.push("/todo");
 		} catch (err) {
 			//setError(err)
 			setError("An Error Occured. \n Failed to create an account. \n Try Again");
